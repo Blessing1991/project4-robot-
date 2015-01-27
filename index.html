@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Poller+One' rel='stylesheet' type='text/css'>
+  <style>
+    div {
+    	height: 150px;
+    	width: 300px;
+    	
+    
+    }
+
+    .robot {
+    	position: relative;
+    	left: 500px;
+    }
+
+     @keyframes blink {
+    	50% {
+    		background: radial-gradient(circle, red 15%, transparent 40%), #cc5;
+            background-size: 50% 100%;
+    	}
+    }
+
+    @-webkit-keyframes blink {
+    	50% {
+    		background: -webkit-radial-gradient(circle, red 15%, transparent 40%), #cc5;
+            background-size: 50% 100%;
+    	}
+    }
+
+    @-moz-keyframes blink {
+    	50% {
+    		background: -moz-radial-gradient(circle, red 15%, transparent 40%), #cc5;
+            background-size: 50% 100%;
+    	}
+    } 
+
+    .laser {
+    	animation: blink .5s infinite;
+    	-webkit-animation: blink .5s infinite;
+    	-moz-animation: blink .5s infinite;
+    }
+
+    .heady {
+    	
+    	background: radial-gradient(circle, yellow 15%, transparent 40%), rgba(0,120,130,1);
+    	background: -webkit-radial-gradient(circle, yellow 15%, transparent 40%), rgba(0,120,130,1);
+    	background: -moz-radial-gradient(circle, yellow 15%, transparent 40%), rgba(0,120,130,1);
+    	height: 150px;
+    	width: 150px;
+    	border-radius: 60px 60px 10px 10px;
+    	border-bottom: 40px double rgba(0,100,40,.5);
+    	background-size: 50% 100%;
+    	position: relative;
+    	left: 70px;
+    }
+
+    .chest {
+    	height: 0;
+    	width: 140px;
+    	border-top: 300px solid green;
+    	border-left: 75px solid transparent;
+    	border-right: 75px solid transparent;
+    	border-radius: 20px 20px 100px 100px;
+    }
+
+    .left {
+    	font-family: 'Poller One', verdana, arial, sans-serif;
+    	font-weight: bold;
+    	font-size: 250px;
+    	color: rgba(0,103,150,1);
+    	transform: rotate(200deg);
+    	-web-transform: rotate(200deg);
+    	-moz-transform: rotate(200deg);
+    	position: relative;
+    	bottom: 200px;
+    	right: 380px;
+    	z-index: -1;
+
+    }
+
+    .right {
+    	font-family: 'Poller One', verdana, arial, sans-serif;
+    	font-weight: bold;
+    	font-size: 250px;
+    	color: rgba(0,103,150,1);
+    	transform: scaleY(-1) rotate(20deg);
+    	-webkit-transform: scaleY(-1) rotate(20deg);
+    	-moz-transform: scaleY(-1) rotate(20deg);
+    	position: relative;
+    	bottom: 350px;
+    	left: 220px;
+    	z-index: -1;
+
+
+    }
+    .foot {
+    	height: 40px;
+    	width: 40px;
+    	background-color: blue;
+    	border-radius: 40px;
+    	border: 15px solid rgba(0,130,150,1);
+    	position: relative;
+    	left: 110px;
+    	bottom: 10px;
+    	z-index: -1;
+    
+    }
+
+    .beep {
+    	width: 5px;
+    	height: 0;
+    	border: 5px solid transparent;
+    	border-top: 10px solid rgba(0,90,90,1);
+    	border-bottom: 80px solid rgba(0,90,140,1);
+    	position: relative;
+    	left: 140px;
+    }
+
+    @keyframes dance {
+    	from {
+    		left: 800px;
+    	}
+    }
+
+    @-webkit-keyframes dance {
+    	from {
+    		left: 800px;
+    	}
+    }
+
+    @-moz-keyframes dance {
+    	from {
+    		left: 800px;
+    	}
+    }
+
+    img {
+    	animation: dance 4s infinite;
+    	-webkit-animation: dance 4s infinite;
+    	-moz-animation: dance 4s infinite;
+    	position: absolute;
+    	top: 200px;
+    	left: 400px;
+    }
+    
+  </style>
+</head>
+
+<body>
+<div class="robot">
+<div class="beep"></div>
+<div class="heady"></div>
+<div class="chest">
+	<div class="left">j</div>
+	<div class="right">j</div>
+</div>
+<div class="foot"></div>
+</div>
+
+<button class="flash"><bold>On/Off</bold></button>
+<button class="color">Change color</button>
+<button class="moves">break/dance</button>
+<img src="/assets/dance_cotter.gif">
+<script>
+// when eyes is clicked, toggle laser class
+	$(".flash").click(function() {
+		$(".heady").toggleClass("laser");
+	});
+
+	//when color button is clicked, pick a number 0-255
+	$(".color").click(function() {
+		// Assign each named color a random number 0-255
+		var red = Math.floor(Math.random() * 255);
+		var green = Math.floor(Math.random() * 255);
+		var blue = Math.floor(Math.random() * 255);
+
+		// Generate an RGBA value from red, green, and blue
+		var randomRGBA = "rgba("+red+","+green+","+blue+",1)";
+
+		// change body's background to a random color
+		$("body").css("background", randomRGBA);
+		// Display the RGBA in an alert window
+		//alert(randomRGBA);
+	});
+
+	$(".moves").click(function() {
+		$("img").toggle();
+	});
+</script>
+</body>
